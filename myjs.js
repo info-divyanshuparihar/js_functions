@@ -365,6 +365,3 @@ function check_password(pwd)
 	return false;
 }
 
-//this function will validate a Checkbox
-
-function checkbox_validate()

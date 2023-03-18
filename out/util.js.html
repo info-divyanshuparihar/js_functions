@@ -27,37 +27,418 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Checks if a given value is empty or not.
  * @function checkIsEmpty
+ * @desc Checks if a given value is empty or not.
  * @param {string} enter - The value to be checked for emptiness.
  * @returns {boolean} - Returns true if the value is empty, false otherwise.
  */
-function checkIsEmpty(enter)
-{
-    if(enter=="") return true;
-	
-	return false;
+function checkIsEmpty(enter) {
+  if (enter == "") return true;
+  return false;
 }
 
-function invalidNumber(number)
-{
-	if(checkIsEmpty(number)== true) return false;
-	return isNaN(number);
+/**
+ * @function invalidNumber
+ * @desc Determines if a given number is invalid, i.e., not a number.
+ * @param {number} number - The number to be checked.
+ * @returns {boolean} - Returns true if the given number is invalid, false otherwise.
+*/
+function invalidNumber(number) {
+  if (checkIsEmpty(number) == true) return false;
+  return isNaN(number);
 }
 
+/**
+ * @function printTable
+ * @desc Generates a multiplication table for a given number.
+ * @param {number} n - The number to generate the multiplication table for.
+ * @returns {string} - The multiplication table as a string, with each row separated by the "&lt;br>" tag.
+*/
+function printTable(n) {
+  if (checkIsEmpty(n)) return false;
 
-function add (n1, n2) 
-{
-    if (checkIsEmpty(n1)) return 'Please etner non empty value ';
-    return n1+n2;
+  let text = "";
+
+  for (let i = 1; i &lt;= 10; i++) {
+    text += n + " x " + i + " = " + " " + n * i + "&lt;br>";
+  }
+
+  return text;
 }
 
+/**
+ * @function add
+ * @desc Adds two numbers and returns the result.
+ * @param {number|string} n1 - The first number to be added.
+ * @param {number|string} n2 - The second number to be added.
+ * @returns {number} - The sum of the two numbers.
+*/
+function add(n1, n2) {
+  return parseInt(n1) + parseInt(n2);
+}
 
+/**
+ * @desc Performs a mathematical operation on two numbers using the specified operator.
+ * @param {number|string} n1 - The first number.
+ * @param {number|string} n2 - The second number.
+ * @param {string} operator - The operator to be used for the mathematical operation.
+ * @returns {number|string} - The result of the mathematical operation, or an error message if there was an issue with the input.
+*/
+function operation(n1, n2, operator) {
+  if (n1 == "" || n2 == "") return "Please enter number";
 
-function array_search(data_array, find_element)
-{
-    
-}</code></pre>
+  n1 = parseInt(n1);
+  n2 = parseInt(n2);
+
+  if (operator == "+") {
+    return n1 + n2;
+  } else if (operator == "-") {
+    return n1 - n2;
+  } else if (operator == "*") {
+    return n1 * n2;
+  }
+
+  return "Please enter valid opertor ";
+}
+
+/**
+ * @desc Finds either the maximum or minimum number from an array of numbers.
+ * @param {number[]} number - The array of numbers.
+ * @param {string} [type="max"] - The type of operation to perform: "max" to find the maximum number or "min" to find the minimum number.
+ * @returns {undefined} - This function does not return anything; instead, it writes the result to the document.
+*/
+function maxNumber(number, type = "max") {
+  var num = number[0];
+  for (var i = 1; i &lt; number.length; i++) {
+    if ((type == "min" &amp;&amp; num > number.length) || num &lt; number.length) {
+      num = number[i];
+    }
+  }
+  document.write(num + "&lt;br>");
+}
+
+/**
+ * @desc Calculates the area of a circle based on its radius.
+ * @param {number} radius - The radius of the circle.
+ * @returns {number} The calculated area of the circle.
+*/
+function areaOfCicrcle(radius) {
+  area = 3.14 * square(radius);
+  return area;
+}
+
+/**
+ * @desc Calculates the square of a given number.
+ * @param {number} n - The number to be squared.
+ * @returns {number} The calculated square of the number.
+*/
+function square(n) {
+  return n * n;
+}
+
+/**
+ * @desc Calculates the average of a list of numbers.
+ * @param {number} n - First number of the list.
+ * @param {number} m - Second number of the list.
+ * @param {number} o - Third number of the list.
+ * @param {number} p - Fourth number of the list.
+ * @param {number} q - Fifth number of the list.
+ * @param {number} w - Sixth number of the list.
+ * @param {number} e - Seventh number of the list.
+ * @returns {number} The calculated average of the list of numbers, rounded to 3 decimal places.
+*/
+function average(n, m, o, p, q, w, e) {
+  var list_of_number = [n, m, o, p, q, w, e];
+  total = sum(list_of_number);
+  ant = total / list_of_number.length;
+  return ant.toFixed(3);
+}
+
+/**
+ * @desc Calculates the sum of a list of numbers.
+ * @param {Array.&lt;number>} n - The list of numbers to be summed.
+ * @returns {number} The calculated sum of the list of numbers.
+*/
+function sum(n) {
+  var sum = 0;
+  for (let i = 0; i &lt; n.length; i++) {
+    sum = n[i] + sum;
+  }
+
+  return sum;
+}
+
+/**
+ * @desc Calculates the simple interest based on the principle, rate, and time.
+ * @param {number} principle - The principle amount of the loan.
+ * @param {number} rate - The interest rate of the loan.
+ * @param {number} time - The time period of the loan.
+ * @returns {number|string} The calculated simple interest of the loan if the rate is provided, otherwise it returns an error message as a string.
+*/
+function simpleinterest(principle, rate, time) {
+  if (rate == "") return "Please provide me rate";
+  var si = principle * rate * time;
+  var into = si / 100;
+  return into;
+}
+
+/**
+ * @desc Prints counting from 1 to a given number n.
+ * @param {number|string} n - The number up to which counting needs to be printed.
+ * @returns {string} The text representation of the counting from 1 to the given number, separated by "&lt;br/>" tags, if a valid number is provided. Otherwise, it returns an error message as a string.
+*/
+function printCounting(n) {
+  if (n == "") return "Please provide valide number";
+  if (typeof n == "string") return "Please give me valid number";
+  var text = "";
+  for (var i = 1; i &lt;= n; i++) {
+    text += i + "&lt;br/>";
+  }
+
+  return text;
+}
+
+/**
+
+ * @desc Generates a random OTP (One Time Password) of a given length.
+ * @param {string} length_of_otp - The desired length of the OTP.
+ * @returns {number|string} The generated OTP if a valid length is provided. Otherwise, it returns an error message as a string.
+*/
+function generateOTP(length_of_otp) {
+  if (checkIsEmpty(length_of_otp) == "false")
+    return "Please provide lenth of otp";
+  let pad = "1";
+  var after_pad = pad.padEnd(parseInt(length_of_otp) + 1, "0");
+  console.log(after_pad);
+  var hhis = Math.floor(Math.random() * after_pad);
+  return hhis;
+}
+
+/**
+
+ * @desc Checks whether a given value is a number or not.
+ * @param {number|string} no - The value to be checked.
+ * @returns {string} "true" if the value is a number, "false" if the value is a string.
+*/
+function check_number(no) {
+  if (typeof no == "number") {
+    return "true";
+  } else if (typeof no == "string") {
+    return "false";
+  }
+}
+
+/**
+
+ * @desc Checks if a given number is positive, negative or zero.
+ * @param {number|string} numbr - The number to be checked.
+ * @returns {string} A message indicating whether the given number is positive, negative or zero. If the input is empty or invalid, an error message is returned instead.
+*/
+function checkPveNve(numbr) {
+  if (checkIsEmpty(numbr)) return "Empty";
+  if (invalidNumber(numbr)) return "please enter a valid number";
+
+  if (numbr &lt; 0) {
+    return "the number is negative";
+  } else if (numbr > 0) {
+    return "the number is positive";
+  } else if (numbr == 0) {
+    return "zero";
+  }
+}
+
+/**
+
+ * @desc Checks if a given number is divisible by 7.
+ * @param {number|string} diiv - The number to be checked for divisibility by 7.
+ * @returns {string} The result of the divisibility check as a string, either "this number is divisible by 7" or "this number is not divisible by 7". If an empty or invalid input is provided, it returns an appropriate error message as a string.
+*/
+function isDivisible(diiv) {
+  if (checkIsEmpty(diiv)) return "Empty";
+  if (invalidNumber(diiv)) return "please enter a valid number";
+  if (diiv % 7 == 0) return "this number is divisible by 7";
+
+  return "this number is not divisible by 7";
+}
+
+/**
+
+ * @desc Sums up the digits of a given number.
+ * @param {number} digit - The number whose digits need to be summed up.
+ * @returns {number} The calculated sum of the digits of the given number.
+*/
+function addDigit(digit) {
+  var sum = 0;
+  while (digit != 0) {
+    sum += digit % 10;
+    digit = Math.floor(digit / 10);
+  }
+  return sum;
+}
+
+/**
+
+ * @desc Calculates the sum of squares of the digits of a given number.
+ * @param {number} digit - The number whose digits' squares need to be summed.
+ * @returns {number} The calculated sum of squares of the digits of the given number.
+*/
+function squareOf(digit) {
+  var sum = 0;
+  while (digit != 0) {
+    sum += square(digit % 10);
+    digit = Math.floor(digit / 10);
+  }
+  return sum;
+}
+
+/**
+
+ * @description Reverses a given string.
+ * @param {string} entVal - The string to be reversed.
+ * @returns {string} The reversed version of the given string.
+*/
+function reverse(entVal) {
+  var splitString = entVal.split("");
+  let splitted = splitString.reverse();
+  let reversed = splitted.join("");
+  return reversed;
+}
+
+/**
+
+ * @desc Calculates the exponent of a given number.
+ * @param {number} vals - The base number.
+ * @param {number} numn - The exponent number.
+ * @returns {number} The calculated exponent of the base number.
+*/
+function exponents(vals, numn) {
+  var exp = 1;
+  for (var i = 1; i &lt;= numn; i++) {
+    exp = vsls * exp;
+  }
+  return exp;
+}
+
+/**
+
+ * @desc Determines if a given number is a prime number or not.
+ * @param {number} pNumber - The number to be checked.
+ * @returns {string} A message indicating whether the number is a prime number or not.
+*/
+function primeNumbr(pNumber) {
+  if (pNumber == 0 || pNumber == 1) return "this is not a Prime number";
+
+  for (let i = 2; i &lt; pNumber; i++) {
+    if (pNumber % i == 0) return "this number is a not Prime Number";
+  }
+
+  return "this is a Prime number";
+}
+
+/**
+
+ * @desc Checks whether a given year is a leap year or not.
+ * @param {number} year - The year to be checked.
+ * @returns {string|boolean} "Leap Year" if the given year is a leap year, otherwise it returns false.
+*/
+function checkLeapYear(year) {
+  if (year % 4 == 0 &amp;&amp; year % 100 != 0) return "Leap Year";
+
+  return false;
+}
+
+/**
+
+ * @desc Checks whether an email is valid or not based on a regular expression.
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} Returns true if the email is valid and false if it is not valid or if it is an empty string.
+*/
+function checkEmail(email) {
+  if (checkIsEmpty(email)) return false;
+  var validation = /^([a-zA-z0-9_\-\.]+)@([a-zA-Z0-9]+.)([a-z]+)(.[a-z]+)$/;
+  if (email.match(validation)) return true;
+  return false;
+}
+
+/**
+
+ * @desc Swaps the values of two variables.
+ * @param {*} x - The first variable to be swapped.
+ * @param {*} y - The second variable to be swapped.
+ * @returns {undefined} The function does not return any value.
+*/
+function swap(x, y) {
+  var temp = "";
+  temp = x; 
+  x = y; 
+  y = temp;
+}
+
+/**
+
+ * @desc Checks if a given URL is valid or not.
+ * @param {string} enterurl - The URL to be validated.
+ * @returns {string} A message indicating if the URL is valid or not.
+*/
+function check_Url(enterurl) {
+  if (invalidNumber(enterurl) == false) return "Please enter a valid url";
+  var validurl = /^(https:\/\/)[a-zA-Z0-9\$\-]+(.[a-z])$/;
+  if (enterurl.match(validurl)) return "email is verified";
+  return "email is not verified";
+}
+
+/**
+
+ * @desc Checks if a given zip code is valid or not.
+ * @param {string} zip - The zip code to be validated.
+ * @returns {string} A message indicating if the zip code is valid or not.
+*/
+function check_Zipcode(zip) {
+  if (invalidNumber(zip) == true) return "empty";
+  var zipcode = /^([0-9]{6})$/;
+  if (zip.match(zipcode)) return "zipcode verified";
+  return "wrong zipcode";
+}
+
+/**
+
+ * @desc Checks if a given phone number is valid or not.
+ * @param {string} numBer - The phone number to be validated.
+ * @returns {boolean} True if the phone number is valid, False otherwise.
+*/
+function phoneNumber(numBer) {
+  if (invalidNumber(numBer)) return false;
+  var numbercode = /^(\+91[0-9]{10})$/;
+  if (numBer.match(numbercode)) return true;
+  return false;
+}
+
+/**
+
+ * @desc Checks if a given name is valid or not.
+ * @param {string} naMe - The name to be validated.
+ * @returns {boolean} True if the name is valid, False otherwise.
+*/
+function check_name(naMe) {
+  if (checkIsEmpty(naMe)) return false;
+  var infoName = /^[a-zA-z]+$/;
+  if (naMe.match(infoName)) return true;
+  return false;
+}
+
+/**
+
+ * @desc Checks if a given password meets the requirements.
+ * @param {string} password - The password to be checked.
+ * @returns {boolean} - True if the password is valid (i.e., it contains only alphanumeric characters and has a length of 8 characters), otherwise false.
+*/
+function check_password(password) {
+  if (checkIsEmpty(password)) return false;
+  var infopwd = /^([a-zA-z0-9]{8})$/;
+  if (password.match(infopwd)) return true;
+  return false;
+}
+</code></pre>
         </article>
     </section>
 
@@ -67,13 +448,13 @@ function array_search(data_array, find_element)
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkIsEmpty">checkIsEmpty</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#addDigit">addDigit</a></li><li><a href="global.html#areaOfCicrcle">areaOfCicrcle</a></li><li><a href="global.html#average">average</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkIsEmpty">checkIsEmpty</a></li><li><a href="global.html#checkLeapYear">checkLeapYear</a></li><li><a href="global.html#checkPveNve">checkPveNve</a></li><li><a href="global.html#check_Url">check_Url</a></li><li><a href="global.html#check_Zipcode">check_Zipcode</a></li><li><a href="global.html#check_name">check_name</a></li><li><a href="global.html#check_number">check_number</a></li><li><a href="global.html#check_password">check_password</a></li><li><a href="global.html#exponents">exponents</a></li><li><a href="global.html#generateOTP">generateOTP</a></li><li><a href="global.html#invalidNumber">invalidNumber</a></li><li><a href="global.html#isDivisible">isDivisible</a></li><li><a href="global.html#maxNumber">maxNumber</a></li><li><a href="global.html#operation">operation</a></li><li><a href="global.html#phoneNumber">phoneNumber</a></li><li><a href="global.html#primeNumbr">primeNumbr</a></li><li><a href="global.html#printCounting">printCounting</a></li><li><a href="global.html#printTable">printTable</a></li><li><a href="global.html#reverse">reverse</a></li><li><a href="global.html#simpleinterest">simpleinterest</a></li><li><a href="global.html#square">square</a></li><li><a href="global.html#squareOf">squareOf</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#swap">swap</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Mar 18 2023 13:42:15 GMT+0530 (India Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Mar 18 2023 22:33:41 GMT+0530 (India Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
